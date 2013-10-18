@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/eclipse-extra-resolving.iml" filepath="$PROJECT_DIR$/eclipse-extra-resolving.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eclipse-from-idea-development.iml" filepath="$PROJECT_DIR$/eclipse-from-idea-development.iml" />
     </modules>
   </component>
 </project>
