@@ -1,5 +1,5 @@
 /*
- * Copyright 2000-2013 JetBrains s.r.o.
+ * Copyright 2000-2014 JetBrains s.r.o.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,13 +17,14 @@
 package org.intellij.eclipse.development.extra;
 
 import com.intellij.lang.properties.IProperty;
-import com.intellij.lang.properties.PropertiesUtil;
 import com.intellij.lang.properties.psi.PropertiesFile;
+import com.intellij.lang.properties.xml.XmlPropertiesFileImpl;
 import com.intellij.psi.*;
 import com.intellij.psi.xml.XmlAttributeValue;
 import com.intellij.psi.xml.XmlToken;
 import com.intellij.util.ProcessingContext;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author Vladislav.Rassokhin
@@ -58,7 +59,7 @@ public class PluginXmlPropertiesReferenceProvider extends PsiReferenceProvider {
       return PsiReference.EMPTY_ARRAY;
     }
     final String namePrefix = file.getVirtualFile().getNameWithoutExtension();
-    final PropertiesFile pf = PropertiesUtil.getPropertiesFile(dir.findFile(namePrefix + ".properties"));
+    final PropertiesFile pf = getPropertiesFile(dir.findFile(namePrefix + ".properties"));
     if (pf == null) {
       return PsiReference.EMPTY_ARRAY;
     }
@@ -67,6 +68,12 @@ public class PluginXmlPropertiesReferenceProvider extends PsiReferenceProvider {
       return PsiReference.EMPTY_ARRAY;
     }
     return new PsiReference[]{new PsiReferenceBase.Immediate<PsiElement>(element, property.getPsiElement())};
+  }
+
+  @Nullable
+  public static PropertiesFile getPropertiesFile(@Nullable PsiFile file) {
+    if (file == null) return null;
+    return file instanceof PropertiesFile ? (PropertiesFile)file : XmlPropertiesFileImpl.getPropertiesFile(file);
   }
 
 }
