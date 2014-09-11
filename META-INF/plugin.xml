@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>org.intellij.eclipse.development.extra</id>
   <name>Extra features for Eclipse plugins development</name>
-  <version>0.1.0</version>
+  <version>0.1.1</version>
   <vendor email="Vladislav.Rassokhin@jetbrains.com">Vladislav Rassokhin from JetBrains</vendor>
 
   <depends>com.intellij.modules.platform</depends>
@@ -20,6 +20,8 @@
     ]]></description>
 
   <change-notes><![CDATA[
+    <h4>0.1.1</h4>
+    <p>Fix #1 NSME in IDEA 14 EAP</p>
     <h4>0.1.0</h4>
     <p>First version.<br/>
       '%property' navigation.
